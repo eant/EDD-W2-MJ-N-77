@@ -41,7 +41,46 @@
 		</aside>
 
 		<script>
-		
+			/*
+			//Valores determinados...
+			let nombre = "Cafe"     //<-- String: valores alfanumericos
+			let stock = 300         //<-- Int: numeros enteros
+			let precio = 125.75     //<-- Float: numeros con decimales
+			let disponible = true   //<-- Bool: valores true/false
+
+			//Valores indeterminados...
+			//1) ... determinable por una operacion logico-matematica
+			let precioFinal = precio * 1.21
+
+			//2) ... determinable por una operacion del usuario
+			let usuario = prompt("Ingrese su nombre:")
+
+			console.log(precioFinal)
+			*/
+			//1# Ingreso de Datos
+			let nombre = prompt("Ingrese nombre:")
+			let stock = prompt("Ingrese stock:")
+			let precio = prompt("Ingrese precio:")
+			let disponible = confirm("Esta disponible?")
+
+			//2# Validacion de datos
+			stock = parseInt(stock)
+			precio = parseFloat(precio)
+
+			console.log("Usted ingreso estos datos:")
+			console.log(nombre)
+			console.log(stock)
+			console.log(precio)
+			console.log(disponible)
+
+			if( nombre == "" || nombre == null || nombre == undefined ){
+				alert("ERROR... nombre NO puede quedar vacio!!")
+			}
+
+			if( isNaN(stock) || stock < 0 || stock > 1000 ){
+				alert("ERROR, ingrese un stock valido...")
+			}
+	
 		</script>
 	</body>
 </html>
