@@ -94,10 +94,10 @@
 			//let mensaje = "Hay " + stock + " unidades de '"+nombre+"' que valen ARS "+precio+" c/u"
 
 			//Despues de 2015: template string
-			let mensaje = `Hay ${stock} unidades de "${nombre}" que valen ARS ${precio} c/u`
+			let mensaje = `Hay ${stock} unidades de "${nombre}" que valen ARS ${(precio * 1.21)} c/u`
 
-
-			console.log(mensaje)
+			//Manipulacion del DOM - Document Object Model
+			document.querySelector("article").innerText = mensaje
 
 		</script>
 	</body>
