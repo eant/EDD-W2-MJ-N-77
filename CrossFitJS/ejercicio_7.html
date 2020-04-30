@@ -57,6 +57,7 @@
 			<p>Si el usuario vuelve a "seleccionar habitación" quedan todas escondidas</p>
 		</aside>
 
+		<script src="assets/validador.js"></script>
 		<script>
 			/* 1) Seleccionar todas las habitaciones */
 			let habitaciones = document.querySelectorAll(".habitacion")
@@ -77,7 +78,7 @@
 			}
 
 			function mostrarOpcion(){
-				debugger
+				//debugger
 
 				esconderHabitaciones() //<-- 2) Cuando se esta por mostrar una habitacion (esconde la anterior)
 				/* 5) Obtener la opción seleccionada */
@@ -94,20 +95,6 @@
 				elegida.classList.remove("esconder")
 			}
 			/////////////////////////////////////////////////////////
-			let links = document.querySelectorAll("nav a")
-
-			links[1].onclick = validarLink
-
-			function validarLink(evento){
-				evento.preventDefault() //<-- JS interrumpe el comportamiento predeterminado
-				
-				let rta = confirm(`Está seguro que desea ir al ${evento.target.innerText}?`)
-
-				if( rta ){
-					//ACA HAY QUE REPROGRAMAR QUE EL NAVEGADOR VAYA A DONDE DICE EL LINK CLICKEADO
-					window.location.href = evento.target.href
-				}
-			}
 		</script>
 	</body>
 </html>
