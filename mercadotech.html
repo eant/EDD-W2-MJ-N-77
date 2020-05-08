@@ -43,7 +43,11 @@
 		<script src="https://blackrockdigital.github.io/startbootstrap-shop-item/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 		<script src="producto.class.js"></script>
 		<script>
-			fetch("https://api.npoint.io/6b51ed82842567c3a283").then(function(rta){
+			//En Node.js...
+			//const productos = require("productos.json")
+			//import productos from "productos.json"
+
+			fetch("productos.json").then(function(rta){
 
 				return rta.json() //<-- Convierte los datos de JSON a Objetos
 
