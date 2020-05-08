@@ -43,44 +43,18 @@
 		<script src="https://blackrockdigital.github.io/startbootstrap-shop-item/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 		<script src="producto.class.js"></script>
 		<script>
-			let elProducto = new Producto("iPhone SE", 500, 499.99, "http://lorempixel.com/480/320/technics/", "Apple") //<-- Instanciacion de un objeto "Producto"
-			let elOtroProducto = new Producto("Galaxy Note 8", 750, 699.99, "https://picsum.photos/480/320/", "Samsung")
-			let elUltimoProducto = new Producto("Moto G 7gen", 600, 399.99, "http://lorempixel.com/480/320/people/", "Motorola")
+			fetch("https://api.npoint.io/6b51ed82842567c3a283").then(function(rta){
 
-			elOtroProducto.Descuento("UH7XTU78I")
+				return rta.json() //<-- Convierte los datos de JSON a Objetos
 
-			elProducto.Mostrar()
-			elOtroProducto.Mostrar()
-			elUltimoProducto.Mostrar()
-			/////////////////////////////////////////////////
-			//De Federico Brusa para todos:  09:52 PM
-			//que es json??
+			}).then(function(productos){
+				
+				productos.forEach(function({Nombre, Stock, Precio, Imagen, Marca}){ //<-- Desmenuzar el objeto sacando solo los datos necesarios
+					let superProducto = new Producto(Nombre, Stock, Precio, Imagen, Marca)
+					superProducto.Mostrar()
+				})
 
-			//JavaScript Object Notation - JSON
-			//(Notacion de Objetos de JavaScript)
-			/*
-			{
-				"nombre" : "Cafe",
-				"precio" : 45.63,
-				"stock" : 450,
-				"disponible" : false
-			}
-			*/
-			//CSV - Valores separados por comas
-			//cafe,300,45.65,false
-			//jugo,500,56.78,true
-			//agua,600.67.89,false
-
-			//XML - Lenguaje de Marcado Extendible
-			/*
-			<producto>
-				<nombre>Cafe</nombre>
-				<precio>85.69</precio>
-				<stock>850</stock>
-				<disponible>false</disponible>
-			</producto>
-			*/
-
+			})
 		</script>
 	</body>
 </html>
