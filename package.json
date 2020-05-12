@@ -1,0 +1,22 @@
+{
+  "name": "mercadotech",
+  "version": "0.0.1",
+  "description": "Plataforma de Productos en JS",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eant/EDD-W2-MJ-N-77.git"
+  },
+  "author": "smessina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eant/EDD-W2-MJ-N-77/issues"
+  },
+  "homepage": "https://github.com/eant/EDD-W2-MJ-N-77#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
