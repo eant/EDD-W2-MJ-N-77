@@ -43,21 +43,18 @@
 		<script src="https://blackrockdigital.github.io/startbootstrap-shop-item/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 		<script src="producto.class.js"></script>
 		<script>
-			//En Node.js...
-			//const productos = require("productos.json")
-			//import productos from "productos.json"
-
+			let productos = null
 			fetch("productos.json").then(function(rta){
 
 				return rta.json() //<-- Convierte los datos de JSON a Objetos
 
-			}).then(function(productos){
+			}).then(function(objetos){
 				
-				productos.forEach(function({Nombre, Stock, Precio, Imagen, Marca}){ //<-- Desmenuzar el objeto sacando solo los datos necesarios
-					let superProducto = new Producto(Nombre, Stock, Precio, Imagen, Marca)
-					superProducto.Mostrar()
-				})
-
+				//Coleccion de objetos de tipo Producto
+				productos = objetos.map(
+					({Nombre, Stock, Precio, Imagen, Marca}) => new Producto(Nombre, Stock, Precio, Imagen, Marca)
+				)
+		
 			})
 		</script>
 	</body>
