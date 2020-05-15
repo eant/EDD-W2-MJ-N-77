@@ -43,28 +43,16 @@
 		<script src="https://blackrockdigital.github.io/startbootstrap-shop-item/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 		<script src="producto.class.js"></script>
 		<script>
-			fetch("productos.json").then(function(rta){
-
-				return rta.json() //<-- Convierte los datos de JSON a Objetos
-
-			}).then(function(objetos){
-				
-				//Coleccion de objetos de tipo Producto
-				return objetos.map(
-					({Nombre, Stock, Precio, Imagen, Marca}) => new Producto(Nombre, Stock, Precio, Imagen, Marca)
-				)
-
-			}).then(function(productos){
-
-				return productos.filter(producto => producto.precio < 300 )
-
-			}).then(function(productos){
-				//1) Mostrar todos los productos...
-				productos.forEach(producto => {
-					producto.Mostrar()
+			fetch("productos.json")
+				.then( rta => rta.json() )
+				.then( objetos => objetos.map( ({Nombre, Stock, Precio, Imagen, Marca}) => new Producto(Nombre, Stock, Precio, Imagen, Marca) ) )
+				.then( productos => productos.filter(producto => producto.precio < 300 ) )
+				.then( productos => {
+					// Mostrar todos los productos...
+					productos.forEach(producto => {
+						producto.Mostrar()
+					})
 				})
-			})
-			///////////////////////////////////////////
 		</script>
 	</body>
 </html>
