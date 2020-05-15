@@ -46,12 +46,19 @@
 			fetch("productos.json")
 				.then( rta => rta.json() )
 				.then( objetos => objetos.map( ({Nombre, Stock, Precio, Imagen, Marca}) => new Producto(Nombre, Stock, Precio, Imagen, Marca) ) )
-				.then( productos => productos.filter(producto => producto.precio < 300 ) )
-				.then( productos => {
+				.then( productos => productos.filter( producto => producto.precio > 249 && producto.stock > 100 ) )
+				.then( resultado => {
 					// Mostrar todos los productos...
-					productos.forEach(producto => {
-						producto.Mostrar()
-					})
+					if( resultado instanceof Array ){ //<-- Si el resultado es una array
+
+						resultado.forEach( producto => {
+							producto.Mostrar()
+						})
+
+					} else {
+						resultado.Mostrar()
+					}
+					
 				})
 		</script>
 	</body>
