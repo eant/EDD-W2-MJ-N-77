@@ -43,6 +43,7 @@
 		<script src="https://blackrockdigital.github.io/startbootstrap-shop-item/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 		<script src="producto.class.js"></script>
 		<script>
+			/*
 			fetch("productos.json")
 				.then( rta => rta.json() )
 				.then( objetos => objetos.map( ({Nombre, Stock, Precio, Imagen, Marca}) => new Producto(Nombre, Stock, Precio, Imagen, Marca) ) )
@@ -60,6 +61,38 @@
 					}
 					
 				})
+				*/
+				////////////////////////////////
+				const GET = async url => {
+					let rta = await fetch(url)
+					return await rta.json() //<-- Retornar convertido de JSON a Objetos genericos
+				}
+				const armarCatalogo = async (max) => {
+
+					let objetos = await GET("productos.json")
+
+					let productos = objetos.map( ({Nombre, Stock, Precio, Imagen, Marca}) => new Producto(Nombre, Stock, Precio, Imagen, Marca) )
+					
+					let resultado = productos.filter( producto => producto.precio > 249 && producto.stock > 100 )
+
+					return resultado
+				}
+				/////////////////////////////////
+				window.onload = async () => {
+
+					let catalogo = await armarCatalogo()
+
+					if( catalogo instanceof Array ){ //<-- Si el resultado es una array
+
+						catalogo.forEach( producto => {
+							producto.Mostrar()
+						})
+
+					} else {
+						catalogo.Mostrar()
+					}
+
+				}
 		</script>
 	</body>
 </html>
