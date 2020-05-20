@@ -33,7 +33,7 @@ class Producto {
         }
     }
     //////////////////////////////////////////////////////////////////
-    static armarCatalogo(objetos){ //<-- Metodos de Clase (o estaticos)
+    static armarCatalogo(objetos, rango){ //<-- Metodos de Clase (o estaticos)
         
         let productos = objetos.map( ({Nombre, Stock, Precio, Imagen, Marca}) => new Producto(Nombre, Stock, Precio, Imagen, Marca) )
 					
