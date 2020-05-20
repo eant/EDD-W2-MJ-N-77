@@ -76,24 +76,16 @@
 				const GET = async url => {
 					let rta = await fetch(url)
 					return await rta.json() //<-- Retornar convertido de JSON a Objetos genericos
-				}
-				const armarCatalogo = async (max) => {
-
-					let objetos = await GET("productos.json")
-
-					let productos = objetos.map( ({Nombre, Stock, Precio, Imagen, Marca}) => new Producto(Nombre, Stock, Precio, Imagen, Marca) )
-					
-					let resultado = productos.filter( producto => producto.precio > 249 && producto.stock > 100 )
-
-					return resultado
-				}
+				}				
 				const aguanta = timeout => { //aguanta(3000)
 					return new Promise( resolve => setTimeout(resolve, timeout) )
 				}
 				/////////////////////////////////
 				window.onload = async () => {
 
-					let catalogo = await armarCatalogo()
+					let objetos = await GET("productos.json")
+
+					let catalogo = Producto.armarCatalogo(objetos)
 
 					if( catalogo instanceof Array ){ //<-- Si el resultado es una array
 

@@ -8,7 +8,7 @@ class Producto {
         this.marca = m
     }
 
-    Mostrar(){
+    Mostrar(){ //<-- Metodos de Instancia
         const ficha = document.createElement("article")
 
         ficha.classList.add("col-4")
@@ -27,9 +27,18 @@ class Producto {
         document.querySelector("#productos-destacados").appendChild(ficha)
     }
 
-    Descuento(cupon){
+    Descuento(cupon){ //<-- Metodo de Instancia
         if( cupon == "UH7XTU78I" ){
             this.precio -= (this.precio * 0.15)
         }
+    }
+    //////////////////////////////////////////////////////////////////
+    static armarCatalogo(objetos){ //<-- Metodos de Clase (o estaticos)
+        
+        let productos = objetos.map( ({Nombre, Stock, Precio, Imagen, Marca}) => new Producto(Nombre, Stock, Precio, Imagen, Marca) )
+					
+        let resultado = productos.filter( producto => producto.precio > 249 && producto.stock > 100 )
+
+        return resultado
     }
 }
