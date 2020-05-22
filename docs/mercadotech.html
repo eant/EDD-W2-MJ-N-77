@@ -60,16 +60,25 @@
 		<script src="producto.class.js"></script>
 		<script>
 				const GET = async url => {
-					let rta = await fetch(url)
+					let rta = await fetch(url) //<-- Obtengo contenido en formato JSON
 					return await rta.json() //<-- Retornar convertido de JSON a Objetos genericos
 				}				
 				const aguanta = timeout => { //aguanta(3000)
 					return new Promise( resolve => setTimeout(resolve, timeout) )
 				}
 				const mostrarCatalogo = async rango => {
+					let objetos = null
+					if( !localStorage.getItem("CATALOGO") ){ //<-- Si NO hay un Local Storage ...
+						// ↓ Un Array de muchos Object
+						objetos = await GET("productos.json")
+						localStorage.setItem("CATALOGO", JSON.stringify(objetos) )
 
-					let objetos = await GET("productos.json")
+					} else { //<-- Si EFECTIVAMENTE hay un Local Storage ...
 
+						objetos = JSON.parse( localStorage.getItem("CATALOGO") ) 
+					
+					}
+					
 					let catalogo = Producto.armarCatalogo(objetos, rango)
 
 					if( catalogo instanceof Array ){ //<-- Si el resultado es una array
@@ -90,12 +99,34 @@
 							min : evento.target.getAttribute("data-min"),
 							max : evento.target.getAttribute("data-max")
 						}
-						console.log(rango)
+						document.querySelector("#productos-destacados").innerHTML = null
 						mostrarCatalogo(rango)
 					}
 				})
 
 				mostrarCatalogo()
+
+
+				//////////////////
+				//window.sessionStorage & window.localStorage
+				/*
+				localStorage.setItem(NOMBRE, VALOR)
+				localStorage.getItem()
+				localStorage.removeItem()
+				localStorage.clear()
+				*/
+
+				//localStorage.setItem("usuario", "eant")
+				/*
+				let usuario = localStorage.getItem("usuario")
+				if ( usuario == "eant"){
+					alert("Bienvenido de vuelta @" + usuario)
+				}
+				localStorage.removeItem("usuario")
+				*/
+
+
+
 		</script>
 	</body>
 </html>
