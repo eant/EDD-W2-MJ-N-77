@@ -61,6 +61,8 @@
 		<script src="producto.class.js"></script>
 		<script>
 				////////////////////////////////////////////////////////////////
+				window.auth2 = null
+
 				gapi.load("auth2", () => {
 					let credenciales = {
 						client_id: '909599252120-78uvnq8uts7c2da46bu4l9ouvvgcjo4j.apps.googleusercontent.com',
@@ -96,6 +98,11 @@
 
 					document.querySelector("#login").classList.remove("d-none")
 					document.querySelector("#logout").classList.add("d-none")
+
+					document.querySelectorAll(".btn-editar").forEach(btn => {
+						btn.classList.remove("d-block")
+						btn.classList.add("d-none")
+					})
 				}
 
 				//Bienvenida
@@ -106,6 +113,10 @@
 
 					document.querySelector("#login").classList.add("d-none")
 					document.querySelector("#logout").classList.remove("d-none")
+
+					document.querySelectorAll(".btn-editar").forEach(btn => {
+						btn.classList.remove("d-none")
+					})
 				}
 				///////////////////////////////////////////////////////////////
 				const GET = async url => {
